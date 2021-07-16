@@ -1,0 +1,16 @@
+keycloak:
+  # the name of the realm, required
+  realm: xdevops
+  # the client-id of the application, required
+  resource: springboot-keycloak-demo
+  # the base URL of the Keycloak server, required
+  auth-server-url: http://localhost:8180/auth
+  # establishes if communications with the Keycloak server must happen over HTTPS
+  # set to external, meaning that it's only needed for external requests (default value)
+  # In production, instead, we should set it to all. Optional
+  ssl-required: external
+  # prevents the application from sending credentials to the Keycloak server (false is the default value)
+  # set it to true whenever we use public clients instead of confidential
+  public-client: true
+  # the attribute with which to populate the UserPrincipal name
+  principal-attribute: preferred_username
