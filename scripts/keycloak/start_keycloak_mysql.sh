@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# No volume, only for test!!!
+
 # Create a user defined network
 docker network create keycloak-network
 
