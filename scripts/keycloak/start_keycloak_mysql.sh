@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# No volume, only for test!!!
 
 # Create a user defined network
 docker network create keycloak-network
@@ -9,6 +8,7 @@ docker network create keycloak-network
 docker run --name keycloak-mysql \
   -d \
   --net keycloak-network \
+  -v $HOME/keycloak/mysql-data:/var/lib/mysql \
   -e MYSQL_DATABASE=keycloak \
   -e MYSQL_USER=keycloak \
   -e MYSQL_PASSWORD=keycloak123 \
