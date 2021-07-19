@@ -11,6 +11,14 @@ keycloak:
   ssl-required: external
   # prevents the application from sending credentials to the Keycloak server (false is the default value)
   # set it to true whenever we use public clients instead of confidential
-  public-client: true
+  # when access type in keycloak is `confidential` must set `public-client: false`
+  public-client: false
+  # client secret: client id and secret
+  # https://www.keycloak.org/docs/latest/securing_apps/index.html#_client_authentication_adapter
+  credentials:
+    secret: "1804cd92-b659-4d0e-9bac-c25aac2c9981"
   # the attribute with which to populate the UserPrincipal name
   principal-attribute: preferred_username
+
+
+
