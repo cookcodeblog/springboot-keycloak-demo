@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
@@ -17,6 +18,7 @@ public class LibraryController {
     }
 
     @GetMapping("/books")
+    @RolesAllowed({"user", "admin"})
     public String getBooks(Model model, Principal principal) {
         model.addAttribute("books", bookRepository.readAll());
         model.addAttribute("name", principal.getName());
@@ -24,9 +26,11 @@ public class LibraryController {
     }
 
     @GetMapping("/manager")
+    @RolesAllowed("admin")
     public String manageBooks(Model model, HttpServletRequest request) {
         model.addAttribute("books", bookRepository.readAll());
-        model.addAttribute("name", SecurityUtils.getIDToken(request).getGivenName());
+        String userName = SecurityUtils.getIDToken(request).getGivenName();
+        model.addAttribute("name", userName);
         return "manager";
     }
 }
